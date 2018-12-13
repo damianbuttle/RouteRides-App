@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+
+{% block title %}Route Rides | Project Demo{% endblock %}
+
+{% block main %}
+
+  <div class="container-fluid">
+
+    <div class="col-sm-12 show-header">
+        <h4>{{ apos.singleton(data.page, 'about-heading', 'apostrophe-rich-text', {
+                toolbar: [ 'Styles', 'Bold', 'Italic' ],
+                styles: [
+                { name: 'Heading', element: 'h3' }
+                ]
+              }) }}</h4>
+        </div>
+    <div class="col-lg">
+      {{ apos.singleton(data.page, 'about', 'apostrophe-rich-text', {
+        toolbar: [ 'Styles', 'Bold', 'Italic' ],
+        styles: [
+        { name: 'SubHeading', element: 'h5' },
+        { name: 'paragraph', element: 'p' }
+        ]
+      }) }}
+    </div>
+</div>
+{% endblock %}

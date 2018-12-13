@@ -1,0 +1,211 @@
+{# Automatically extends the right outer layout and also handles AJAX siutations #}
+{% extends data.outerLayout %}
+
+{% block title %}
+  {# Create a useful, SEO-friendly title tag based on what we have #}
+  {% if data.piece %}
+    {{ data.piece.title }}
+  {% elseif data.page %}
+    {{ data.page.title }}
+  {% else %}
+    {{ apos.log('Looks like you forgot to override the title block in a template that does not have access to an Apostrophe page or piece.') }}
+  {% endif %}
+{% endblock %}
+
+{% block extraHead %}
+  {#
+    This block outputs its contents in the HTML document's <head>.
+    It is a good place to put extra <script> <link> and <meta> tags.
+  #}
+  <script
+    src="https://code.jquery.com/jquery-3.3.1.min.js"
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
+    <link rel="apple-touch-icon" href="http://localhost:3000/img/apple-touch-icon.png">
+    <link rel="shortcut icon" type="image/ico" href="https://routerides-demo.herokuapp.com/img/favicon.ico" />
+
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+
+{% endblock %}
+
+{% block beforeMain %}
+<header>
+<div class="row bg-header">
+<div class="col-lg-3"></div>
+<div class="col-lg-4"><i class="fas fa-map-marker-alt"></i><a href="https://goo.gl/maps/WwahXqBkkzv">1500 Somewhere Ave, Here, AK</a></div>
+<div class="col-lg-4"><i class="fas fa-phone"></i><a href="tel:+12345678901" rel="nofollow">1 234 567 8901</a></div>
+<div class="col-lg-1"><i class="fab fa-facebook-f"></i><i class="fab fa-twitter"></i></div>
+</div>
+<nav class="navbar navbar-expand-lg navbar-light bg-custom">
+  <a class="navbar-brand" href="{{ data.home._url }}"><img class="img-fluid logo" alt="Responsive image" src="https://routerides-demo.herokuapp.com/img/logo.png"></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+  <span class="navbar-toggler-icon"></span>
+  </button>
+
+<div class="collapse navbar-collapse" id="navbarSupportedContent">
+<ul class="tabs navbar-nav mr-auto">
+  {% for tab in data.home._children %}
+    <li class="nav-item dropdown
+    {% if data.page and
+      (apos.pages.isAncestorOf(tab, data.page) or tab._id == data.page._id)
+    %}
+      active
+    {% endif %}
+    "><a class="nav-link {% if tab._children.length %} dropdown-toggle {% endif %}" id="navbarDropdown" "{% if tab._children.length %} data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" {% endif %}" href="{{ tab._url }}">
+{{ tab.title }}</a>
+      {% if tab._children.length %}
+        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+          {% for child in tab._children %}
+            <li><a class="dropdown-item" href="{{ child._url }}">{{ child.title }}</a></li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    </li>
+  {% endfor %}
+</ul>
+<form method="GET" action="/search">
+  <input type="text" name="q" /><input type="submit" value="Search" />
+</form>
+</div>
+</nav>
+</header>
+{% endblock %}
+
+{% block main %}
+  {#
+    Usually, your page templates in the apostrophe-pages module will override
+    this block. It is safe to assume this is where your page-specific content
+    should go.
+  #}
+{% endblock %}
+
+{% block afterMain %}
+  {#
+    This would be a great place to put a global footer.
+  #}
+
+  <!-- Footer -->
+  <footer class="page-footer font-small unique-color-dark">
+
+      <div style="background-color: #A9A9A9;">
+        <div class="container">
+
+          <!-- Grid row-->
+          <div class="row py-4 d-flex align-items-center social">
+
+            <!-- Grid column -->
+            <div class="col-md-6 col-lg-5 text-center text-md-left mb-4 mb-md-0">
+              <h6 class="mb-0">Get connected with us on social networks!</h6>
+            </div>
+            <!-- Grid column -->
+
+            <!-- Grid column -->
+            <div class="col-md-6 col-lg-7 text-center text-md-right">
+
+              <!-- Facebook -->
+              <a class="fb-ic">
+                <i class="fab fa-facebook-f white-text mr-4"> </i>
+              </a>
+              <!-- Twitter -->
+              <a class="tw-ic">
+                <i class="fab fa-twitter white-text mr-4"> </i>
+              </a>
+
+            </div>
+            <!-- Grid column -->
+
+          </div>
+          <!-- Grid row-->
+
+        </div>
+      </div>
+
+      <!-- Footer Links -->
+      <div class="container text-center text-md-left mt-5 links">
+
+        <!-- Grid row -->
+        <div class="row mt-3">
+
+          <!-- Grid column -->
+          <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+
+            <!-- Content -->
+            <p><img class="img-fluid" src="https://routerides-demo.herokuapp.com/img/logo.png"></p>
+
+          </div>
+          <!-- Grid column -->
+
+          <!-- Grid column -->
+          <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+
+            <!-- Links -->
+            <h6 class="text-uppercase font-weight-bold">About the Lifestyle</h6>
+            <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+            <p>
+              <a href="#!">GoRving</a>
+            </p>
+            <p>
+              <a href="#!">Thousand Trails</a>
+            </p>
+            <p>
+              <a href="#!">KOA</a>
+            </p>
+            <p>
+              <a href="#!">More RVing</a>
+            </p>
+
+          </div>
+          <!-- Grid column -->
+
+          <!-- Grid column -->
+          <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+
+            <!-- Links -->
+            <h6 class="text-uppercase font-weight-bold">Useful links</h6>
+            <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+            <p>
+              <a href="#!">About Us</a>
+            </p>
+            <p>
+              <a href="#!">Find Us</a>
+            </p>
+            <p>
+              <a href="#!">Privacy Policy</a>
+            </p>
+            <p>
+              <a href="#!">Dealer Login</a>
+            </p>
+
+          </div>
+          <!-- Grid column -->
+
+          <!-- Grid column -->
+          <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+
+            <!-- Links -->
+            <h6 class="text-uppercase font-weight-bold">Contact</h6>
+            <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+            <p>
+              <i class="fa fa-home mr-3"></i> Joplin, MO 64801, US</p>
+            <p>
+              <i class="fa fa-envelope mr-3"></i> info@routerides.com</p>
+            <p>
+              <i class="fa fa-phone mr-3"></i> (620) 333 4049</p>
+
+          </div>
+          <!-- Grid column -->
+
+        </div>
+        <!-- Grid row -->
+
+      </div>
+      <!-- Footer Links -->
+
+      <!-- Copyright -->
+      <div class="footer-copyright text-center py-3">© 2018 Copyright:
+        <a href="#"> RouteRides.com</a>
+      </div>
+      <!-- Copyright -->
+
+    </footer>
+    <!-- Footer -->{% endblock %}

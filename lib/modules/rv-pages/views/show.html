@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+
+{% block main %}
+  <main>
+<div class="col-sm-12 show-header">
+    <h4>{{ data.piece.year }} {{ data.piece.make }} {{ data.piece.model }} {{ data.piece.title }}</h4>
+    </div>
+<div class="container-fluid">
+  <div class="row">
+
+  <div class="col-sm-12 col-md-9 show-image no-gutter">
+
+      {{ apos.singleton(data.piece, 'thumbnail', 'apostrophe-images') }}
+    </div>
+
+    <div class="col-sm-12 col-md-3 show-list">
+      <h3>Vehicle Details</h3>
+        <ul>
+        <li>Stock Number: {{ data.piece.title }}</li>
+        <li> Condition: {{ data.piece.condition }}</li>
+        <li> Year: {{ data.piece.year }}</li>
+        <li> Make: {{ data.piece.make }}</li>
+        <li> Model: {{ data.piece.model }}</li>
+        <li> Class: {{ data.piece.class }}</li>
+        <li> Mileage: {{ data.piece.mileage }}</li>
+        <li> Fuel Type: {{ data.piece.fuel }}</li>
+        <li> Vin Number: {{ data.piece.vin }}</li>
+        <li> Sleeping Compacity: {{ data.piece.sleeps }}</li>
+        <li> Air Conditioners: {{ data.piece.air }}</li>
+        <li> Awnings: {{ data.piece.awnings }}</li>
+        <li> Slide Outs: {{ data.piece.slides }}</li>
+        <li> Length: {{ data.piece.length }}</li>
+        <li> Engine Manufacture: {{ data.piece.engine }}</li>
+        <li> Leveling Jacks: {{ data.piece.levelling }}</li>
+        <li> Self Contained: {{ data.piece.contained }}</li>
+
+      </ul>
+    </div>
+    </div>
+  </div>
+
+
+
+  </main>
+{% endblock %}

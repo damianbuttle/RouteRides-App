@@ -1,0 +1,379 @@
+@import url('https://fonts.googleapis.com/css?family=Nanum+Gothic');
+@import "utils/reset.less";
+
+
+// Delete the boilerplate CSS below when you are ready to dive in and customize your sites:
+body { background-color: @apos-light; overflow-x: hidden;}
+
+header {
+  font-family: 'Nanum Gothic', sans-serif;
+}
+
+.main-content {
+  font-family: 'Karla', sans-serif;
+  margin: 200px auto;
+  padding: 20px;
+  max-width: 500px;
+  color: @apos-white;
+  background-color: @apos-primary;
+  .apos-drop-shadow;
+
+  .login-link {
+    float: right;
+    color: @apos-white;
+  }
+
+  // Basic rich-text editor styles:
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Nanum Gothic', sans-serif;
+  }
+
+  p {
+    font-family: 'Nanum Gothic', sans-serif;
+  }
+
+  h3 {
+    font-size: 24px;
+    margin-bottom: 12px;
+  }
+
+  h4 {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+
+  strong { font-weight: bold; }
+  em { font-style: italic; }
+}
+
+.no-gutter {
+  padding-left: 0!important;
+  padding-right: 0!important;
+}
+
+.apos-slideshow .apos-slideshow-item {
+    width: 100%;
+    height: auto!important;
+    background-position: top center;
+    background-size: cover!important;
+    background-repeat: no-repeat;
+}
+
+#feature > div > div.featured > div, #feature > div > div.featured > div > div.apos-area-widgets {
+  display: flex;
+}
+
+.carousel-item{
+  width: 100%;
+  height: auto!important;
+  background-position: top center;
+  background-size: contain!important;
+  background-repeat: no-repeat;
+}
+
+.jumbotron {
+  padding: 0!important;
+  position: relative;
+  margin-bottom: 0!important;
+}
+
+.apos-refreshable > div > div.jumbotron > div.apos-area.apos-limit-reached > div.apos-area-widgets > div > div > #carouselExampleControls > .carousel-inner > .carousel-item,
+.jumbotron > div.apos-area > div > div > #carouselExampleControls > .carousel-inner > .carousel-item {
+  height: 47vh!important;
+  background-size: cover!important;
+}
+
+.show-image > div > div > div > #carouselExampleControls > .carousel-inner > .carousel-item {
+  height: 83vh!important;
+  margin-left: -30px!important;
+}
+
+.apos-refreshable > div > div > div > div > div.apos-area-widgets > div > div.apos-area-widget > div.card > div.card-img-top > div > div > div > #carouselExampleControls > .carousel-inner > .carousel-item,
+#feature > div > div > div > div > div > div > div.card-img-top > div > div > div > #carouselExampleControls > .carousel-inner > .carousel-item {
+  height: 200px!important;
+}
+
+
+#feature > div > div > div > div > div > div > div.card-img-top > div > div > div > a.carousel-control-next, #feature > div > div > div > div > div > div > div.card-img-top > div > div > div > a.carousel-control-prev {
+  display: none;
+}
+
+.jumbotron img {
+  height: 100%!important;
+}
+
+.data-slideshow-items {
+  height: auto!important;
+}
+
+div.apos-admin-bar .apos-text-meta .apos-admin-bar--clicked .apos-active > div.apos-admin-bar-inner > div.apos-admin-bar-logo > img {
+  width: 45%!important;
+}
+
+.apos-image-widget-image-title {
+  display: none;
+}
+
+.types {
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  background-color: rgba(0,0,0,0.5)!important;
+  position: absolute;
+  bottom: 50px;
+  width: 101%;
+}
+
+.typeNew {
+  border-right: 1px solid white;
+}
+
+.typeUsed {
+  border-left: 1px solid white;
+}
+
+.typeNew, .typeUsed {
+  flex-grow: 2;
+}
+
+.typeNew > div > div > div > div > h2, .typeUsed > div > div > div > div > h2, .typeNew > div > div.apos-area-widgets > div > div > div.apos-rich-text > h2, .typeUsed > div > div.apos-area-widgets > div > div > div.apos-rich-text > h2, #feature > h2 {
+  color: white!important;
+  text-transform: uppercase!important;
+  font-family: 'Nanum Gothic', sans-serif;
+  font-size: 2.5rem!important;
+  font-weight: bold;
+  padding: 20px;
+}
+
+#feature {
+  background-color: grey;
+  padding-top: 35px;
+  padding-bottom: 35px;
+}
+
+#feature a {
+  border-radius: 0;
+}
+
+
+.typeUsed > div > div > div > div > h5, .typeNew > div > div > div > div > h5, .typeNew > div > div.apos-area-widgets > div > div > div.apos-rich-text > h5, .typeUsed > div > div.apos-area-widgets > div > div > div.apos-rich-text > h5  {
+  color: white!important;
+  text-transform: uppercase!important;
+  font-family: 'Nanum Gothic', sans-serif;
+  font-size: 1.0rem!important;
+}
+
+.typeNew > div > div > div > div > h2 a, .typeUsed > div > div > div > div > h2 a, .typeNew > div > div.apos-area-widgets > div > div > div.apos-rich-text > h2 a, .typeUsed > div > div.apos-area-widgets > div > div > div.apos-rich-text > h2 a ,
+.typeNew > div > div > div > div > h2 a:hover, .typeUsed > div > div > div > div > h2 a:hover, .typeNew > div > div.apos-area-widgets > div > div > div.apos-rich-text > h2 a:hover, .typeUsed > div > div.apos-area-widgets > div > div > div.apos-rich-text > h2 a:hover {
+    text-decoration: none;
+    color: white;
+}
+
+.bg-header {
+  background-color: #d0744a;
+  color: white;
+  padding: 5px;
+}
+
+.bg-header a {
+  text-decoration: none;
+  color: white;
+}
+
+.bg-custom {
+  background-color: #82949b!important;
+}
+
+.navbar-light .navbar-nav .nav-link {
+    color: rgba(555,555,555,1.0);
+    text-shadow:5px 5px 10px black;
+}
+
+.nav-link {
+  text-transform: uppercase!important;
+  font-family: 'Nanum Gothic', sans-serif;
+}
+
+.active {
+  color: blue!important;
+}
+
+.bg-header i {
+  margin-right: 10px;
+}
+
+.tabs {
+  position: relative;
+  left: 260px;
+}
+
+.logo {
+  max-width: 150px!important;
+}
+
+#navbarSupportedContent > ul > li:nth-child(2) > a.navbar-brand {
+  display: none;
+}
+
+.navbar {
+  padding: 0rem 0rem!important;
+}
+
+.card {
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: transparent;
+    background-clip: border-box;
+    border: none;
+    color: white;
+    font-family: 'Nanum Gothic', sans-serif;
+
+}
+
+.repair {
+  background-image: url('../img/repair.jpg');
+  background-size: cover;
+  height: 500px;
+}
+
+.image {
+  background-image: url('../img/img-2.jpg');
+  background-size: cover;
+  height: 500px;
+
+}
+
+.repair {
+  color: white!important;
+  padding: 150px 125px;
+  font-family: 'Nanum Gothic', sans-serif;
+}
+
+.repair h3, .repair h5 {
+  text-transform: uppercase;
+  font-family: 'Nanum Gothic', sans-serif;
+  margin-bottom: 25px;
+}
+
+.repair p {
+  line-height: 1.5;
+}
+
+.show-header {
+  background-color: grey;
+  padding: 15px;
+}
+
+.show-header h4 {
+  text-transform: uppercase;
+  font-family: 'Nanum Gothic', sans-serif;
+  color: white;
+  font-weight: bolder;
+}
+
+.show-list h3 {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-weight: bold;
+}
+
+.show-list {
+  font-family: 'Nanum Gothic', sans-serif;
+}
+
+.show-list ul li {
+  padding: 5px;
+}
+
+footer {
+  background-color: #708090;
+  font-family: 'Nanum Gothic', sans-serif;
+}
+
+.social {
+  color: white;
+}
+
+.links {
+  color: white;
+  background-color: #708090;
+  padding-bottom: 50px;
+}
+
+footer a {
+  color: white;
+  line-height: 1.6;
+}
+
+.footer-copyright {
+  background-color: #000;
+  color: white;
+}
+
+/*******************
+
+UI Elements
+
+*******************/
+
+.apos-ui .apos-button--global, .apos-ui .apos-admin-bar, .apos-login-content, .apos-login-wrapper {
+  background-color: #82949b!important;
+}
+
+.apos-ui .apos-button .apos-button-label {
+}
+
+.apos-refreshable {
+  overflow-x: hidden;
+}
+
+ #feature > div > div.featured > div > div > div > div > div > div.card-img-top > div > div > div #carouselExampleControls > div > div {
+   height: 250px!important;
+ }
+
+/*******************
+
+Media Queries
+
+*******************/
+
+
+@media only screen and (max-width: 768px) {
+  .types {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    background-color: rgba(0,0,0,0.5)!important;
+    width: 105%
+  }
+
+  .typeUsed {
+    border-left: none;
+    border-top: 1px solid white;
+  }
+
+  .typeNew {
+    border-right: none;
+    border-bottom: 1px solid white;
+  }
+
+  .apos-refreshable > div > div.jumbotron > div.apos-area.apos-limit-reached > div.apos-area-widgets > div > div > #carouselExampleControls > .carousel-inner > .carousel-item,
+  .jumbotron > div.apos-area > div > div > #carouselExampleControls > .carousel-inner > .carousel-item {
+    height: 81vh!important;
+    background-size: cover!important;
+  }
+
+  #feature > div > div.featured > div, #feature > div > div.featured > div > div.apos-area-widgets {
+    display: block;
+  }
+
+  .image {
+    height: 250px;
+  }
+
+}

@@ -1,0 +1,22 @@
+<div class="col-sm">
+{% for piece in data.widget._pieces %}
+<div class="card">
+  <div class="card-img-top" alt="Card image cap">    {{
+        apos.singleton(
+          piece,
+          'thumbnail',
+          'apostrophe-images',
+          {
+            edit: false,
+            size: 'one-half'
+          }
+        )
+      }}</div>
+  <div class="card-body">
+    <h5 class="card-title">{{piece.year}} {{ piece.make}} {{piece.model}}</h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    {% if piece._url %}<a href="{{ piece._url }}" class="btn btn-primary">Check it out</a>{% endif %}
+  </div>
+</div>
+{% endfor %}
+</div>

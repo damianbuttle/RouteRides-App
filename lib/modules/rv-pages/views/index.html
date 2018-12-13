@@ -1,0 +1,181 @@
+{% extends "layout.html" %}
+{% block title %}{{ data.page.title }}{% endblock %}
+
+{% block main %}
+
+<script>
+
+/* Custom filtering function which will search data in column four between two values */
+$(document).ready(function() {
+
+  $.fn.dataTable.ext.search.push(
+      function( settings, data, dataIndex ) {
+          var min = parseInt( $('#yearmin').val(), 10 );
+          var max = parseInt( $('#yearmax').val(), 10 );
+          var year = parseFloat( data[3] ) || 0; // use data for the slides column
+
+          if ( ( isNaN( min ) && isNaN( max ) ) ||
+               ( isNaN( min ) && year <= max ) ||
+               ( min <= year   && isNaN( max ) ) ||
+               ( min <= year   && year <= max ) )
+          {
+              return true;
+          }
+          return false;
+      }
+  );
+
+  $.fn.dataTable.ext.search.push(
+      function( settings, data, dataIndex ) {
+          var pricemin = parseInt( $('#pricemin').val(), 10 );
+          var pricemax = parseInt( $('#pricemax').val(), 10 );
+          var price = parseFloat( data[7] ) || 0; // use data for the slides column
+
+          if ( ( isNaN( pricemin ) && isNaN( pricemax ) ) ||
+               ( isNaN( pricemin ) && price <= pricemax ) ||
+               ( pricemin <= price   && isNaN( pricemax ) ) ||
+               ( pricemin <= price   && price <= pricemax ) )
+          {
+              return true;
+          }
+          return false;
+      }
+  );
+
+  $.fn.dataTable.ext.search.push(
+      function( settings, data, dataIndex ) {
+          var sleepmin = parseInt( $('#sleepmin').val(), 10 );
+          var sleepmax = parseInt( $('#sleepmax').val(), 10 );
+          var sleeps = parseFloat( data[4] ) || 0; // use data for the slides column
+
+          if ( ( isNaN( sleepmin ) && isNaN( sleepmax ) ) ||
+               ( isNaN( sleepmin ) && sleeps <= sleepmax ) ||
+               ( sleepmin <= sleeps   && isNaN( sleepmax ) ) ||
+               ( sleepmin <= sleeps   && sleeps <= sleepmax ) )
+          {
+              return true;
+          }
+          return false;
+      }
+  );
+
+  $.fn.dataTable.ext.search.push(
+    function( settings, data, dataIndex,original,counter ) {
+    	var filterValue = $('#filterField').val();
+      var valueToFilter = data[5];
+      if(valueToFilter.indexOf(filterValue) != -1){
+	  		return true;
+      }
+      return false;
+    }
+);
+    var table = $('#new').DataTable();
+
+    // Event listener to the two range filtering inputs to redraw on input
+    $('#yearmin, #yearmax').keyup( function() {
+        table.draw();
+    } );
+
+    // Event listener to the two range filtering inputs to redraw on input
+    $('#pricemin, #pricemax').keyup( function() {
+        table.draw();
+    } );
+
+    // Event listener to the two range filtering inputs to redraw on input
+    $('#sleepmin, #sleepmax').keyup( function() {
+        table.draw();
+    } );
+
+    // Event listener to the two range filtering inputs to redraw on input
+    $('#filterField').keyup( function() {
+        table.draw();
+    } );
+} );
+</script>
+
+<div class="col-sm-12 show-header">
+    <h4>Search Our Listings</h4>
+    </div>
+
+Number of Slides: <input type="text" id="filterField" />
+
+
+<table border="0" cellspacing="5" cellpadding="5">
+        <tbody><tr>
+            <td>Minimum Year:</td>
+            <td><input type="text" id="yearmin" name="min"></td>
+        </tr>
+        <tr>
+            <td>Maximum Year:</td>
+            <td><input type="text" id="yearmax" name="max"></td>
+        </tr>
+    </tbody></table>
+
+    <table border="0" cellspacing="5" cellpadding="5">
+            <tbody><tr>
+                <td>Minimum Price:</td>
+                <td><input type="text" id="pricemin" name="pricemin"></td>
+            </tr>
+            <tr>
+                <td>Maximum price:</td>
+                <td><input type="text" id="pricemax" name="pricemax"></td>
+            </tr>
+        </tbody></table>
+
+        <table border="0" cellspacing="5" cellpadding="5">
+                <tbody><tr>
+                    <td>Minimum Capacity:</td>
+                    <td><input type="text" id="pricemin" name="pricemin"></td>
+                </tr>
+                <tr>
+                    <td>Maximum Capacity:</td>
+                    <td><input type="text" id="sleepmax" name="sleepmax"></td>
+                </tr>
+            </tbody></table>
+
+
+<table id="new" class="table">
+    <thead>
+        <tr>
+            <th></th>
+            <th>Make</th>
+            <th>Model</th>
+            <th>Year</th>
+            <th>Sleeps</th>
+            <th>Slides</th>
+            <th>Length in ft</th>
+            <th>Price</th>
+            <th></th>
+            <th></th>
+
+
+        </tr>
+    </thead>
+    <tbody>
+      {% for piece in data.pieces %}
+        <tr>
+            <td>
+              {% set image = apos.images.first(piece.thumbnail) %}
+                {% if image %}
+                  <img src="{{ apos.attachments.url(image, { size: 'one-sixth' }) }}" />
+                {% endif %}</td>
+            <td>{{ piece.make }}</td>
+            <td>{{ piece.model }}</td>
+            <td>{{ piece.year }}</td>
+            <td>{{ piece.sleeps }}</td>
+            <td>{{ piece.slides }}</td>
+            <td>{{ piece.length }}/ft</td>
+            <td>${{ piece.price }}</td>
+            <td><a class="btn btn-primary" href="{{ piece._url }}">Check it out!</a></td>
+            <td><a class="btn btn-secondary">Call Us!</a></td>
+
+
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+  {% import 'apostrophe-pager:macros.html' as pager with context %}
+  {{ pager.render({ page: data.currentPage, total: data.totalPages }, data.url) }}
+
+{% endblock %}

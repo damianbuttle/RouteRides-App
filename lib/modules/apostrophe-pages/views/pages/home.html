@@ -1,0 +1,69 @@
+{% extends "layout.html" %}
+
+{% block title %}Route Rides | Project Demo{% endblock %}
+
+{% block main %}
+
+  <div class="container-fluid no-gutter">
+    <div class="jumbotron">
+    {{ apos.singleton(data.page, 'heroPic', 'apostrophe-images', {
+      minSize: [ 700, 350 ],
+      aspectRatio: [ 3, 1 ],
+      limit: 3,
+      size: 'max'
+    }) }}
+
+    <div class="row">
+    <div class="types">
+      <div class="col-sm-12 col-lg-6 typeNew">{{ apos.singleton(data.page, 'used', 'apostrophe-rich-text', {
+        toolbar: [ 'Link', 'Styles', 'Bold', 'Italic' ],
+        styles: [
+        { name: 'Heading', element: 'h2' },
+        { name: 'Meta', element: 'h5' }
+        ]
+  }) }}</div>
+      <div class="col-sm-12 col-lg-6 typeUsed">{{ apos.singleton(data.page, 'new', 'apostrophe-rich-text', {
+        toolbar: [ 'Link', 'Styles', 'Bold', 'Italic' ],
+        styles: [
+        { name: 'Heading', element: 'h2' },
+        { name: 'Meta', element: 'h5' }
+        ]
+  }) }}</div>
+    </div>
+  </div>
+  </div>
+  <div class="container-fluid" id="feature">
+    <h2 class="text-center">Featured Vehicles</h2>
+  <div class="row">
+    <div class="col-sm"></div>
+    <div class="featured">
+    {{
+    apos.area(data.page, 'body', {
+    widgets: {
+      'rv': {}
+    }
+  }
+)
+}}
+</div>
+
+<div class="col-sm"></div>
+  </div>
+</div>
+</div>
+  <div class="row">
+    <div class="col-sm repair">
+      {{ apos.singleton(data.page, 'repair', 'apostrophe-rich-text', {
+        toolbar: [ 'Styles', 'Bold', 'Italic' ],
+        styles: [
+        { name: 'Heading', element: 'h3' },
+        { name: 'SubHeading', element: 'h5' },
+        { name: 'paragraph', element: 'p' }
+        ]
+      }) }}
+
+    </div>
+    <div class="col-sm image"></div>
+  </div>
+</div>
+{% endblock %}
